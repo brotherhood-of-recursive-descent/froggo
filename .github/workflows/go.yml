@@ -20,7 +20,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install libasound2-dev libgl1-mesa-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev
-        DISPLAY=:0
+        export DISPLAY=:99
+
     
     - name: Set up Go
       uses: actions/setup-go@v4
