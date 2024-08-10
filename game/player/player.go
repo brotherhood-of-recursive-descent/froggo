@@ -18,9 +18,8 @@ func NewPlayer() *Player {
 	movement := PlayerMovement{}
 	p.AddComponent(&movement)
 
-	// #2 - here you can add your component
-	// rectancle := PlayerRectangle{}
-	// p.Addcomponent(rectangle)
+	rectangle := PlayerRectangle{}
+	p.AddComponent(&rectangle)
 
 	return &p
 }
