@@ -1,8 +1,8 @@
-package objects
+package player
 
 import (
 	"froggo/game"
-	"froggo/game/lib"
+	"froggo/lib"
 )
 
 type Player struct {
@@ -14,8 +14,13 @@ type Player struct {
 func NewPlayer() *Player {
 
 	p := Player{}
+
+	movement := PlayerMovement{}
+	p.AddComponent(&movement)
+
 	// #2 - here you can add your component
-	// p.AddComponent(myComponent)
+	// rectancle := PlayerRectangle{}
+	// p.Addcomponent(rectangle)
 
 	return &p
 }

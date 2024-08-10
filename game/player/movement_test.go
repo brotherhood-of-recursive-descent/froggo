@@ -1,9 +1,8 @@
-package components_test
+package player_test
 
 import (
-	"froggo/game/components"
-	"froggo/game/lib"
-	"froggo/game/objects"
+	"froggo/game/player"
+	"froggo/lib"
 	"testing"
 )
 
@@ -23,58 +22,58 @@ func TestMovement(t *testing.T) {
 
 	// setup
 	fakeInput := FakeInputManager{}
-	player := objects.NewPlayer()
-	movement := components.PlayerMovement{
-		Player:       player,
+	p := player.NewPlayer()
+	movement := player.PlayerMovement{
+		Player:       p,
 		InputManager: &fakeInput,
 	}
-	player.AddComponent(&movement)
+	p.AddComponent(&movement)
 
 	// trigger move left
-	player.Position = lib.Vec2{}
+	p.Position = lib.Vec2{}
 	fakeInput.MoveUpActive = false
 	fakeInput.MoveDownActive = false
 	fakeInput.MoveLeftActive = true
 	fakeInput.MoveRightActive = false
 	movement.Update()
 
-	if player.Position.X != -256 {
-		t.Errorf("expected new position to be %v, got %v\n", -256, player.Position.X)
+	if p.Position.X != -256 {
+		t.Errorf("expected new position to be %v, got %v\n", -256, p.Position.X)
 	}
 
 	// trigger move right
-	player.Position = lib.Vec2{}
+	p.Position = lib.Vec2{}
 	fakeInput.MoveUpActive = false
 	fakeInput.MoveDownActive = false
 	fakeInput.MoveLeftActive = false
 	fakeInput.MoveRightActive = true
 	movement.Update()
 
-	if player.Position.X != 256 {
-		t.Errorf("expected new position to be %v, got %v\n", 256, player.Position.X)
+	if p.Position.X != 256 {
+		t.Errorf("expected new position to be %v, got %v\n", 256, p.Position.X)
 	}
 
 	// trigger move up
-	player.Position = lib.Vec2{}
+	p.Position = lib.Vec2{}
 	fakeInput.MoveUpActive = true
 	fakeInput.MoveDownActive = false
 	fakeInput.MoveLeftActive = false
 	fakeInput.MoveRightActive = false
 	movement.Update()
 
-	if player.Position.Y != 256 {
-		t.Errorf("expected new position to be %v, got %v\n", 256, player.Position.Y)
+	if p.Position.Y != 256 {
+		t.Errorf("expected new position to be %v, got %v\n", 256, p.Position.Y)
 	}
 
 	// trigger move down
-	player.Position = lib.Vec2{}
+	p.Position = lib.Vec2{}
 	fakeInput.MoveUpActive = false
 	fakeInput.MoveDownActive = true
 	fakeInput.MoveLeftActive = false
 	fakeInput.MoveRightActive = false
 	movement.Update()
 
-	if player.Position.Y != -256 {
-		t.Errorf("expected new position to be %v, got %v\n", -256, player.Position.Y)
+	if p.Position.Y != -256 {
+		t.Errorf("expected new position to be %v, got %v\n", -256, p.Position.Y)
 	}
 }

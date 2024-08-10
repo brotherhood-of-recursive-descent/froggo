@@ -1,8 +1,7 @@
-package components
+package player
 
 import (
-	"froggo/game/lib"
-	"froggo/game/objects"
+	"froggo/lib"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -12,7 +11,7 @@ const MovementStep = 256
 // PlayerMovement moves the player left, right, up or down
 type PlayerMovement struct {
 	InputManager lib.InputManager
-	Player       *objects.Player
+	Player       *Player
 	Active       bool
 }
 
