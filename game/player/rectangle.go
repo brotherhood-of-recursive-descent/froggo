@@ -1,7 +1,6 @@
 package player
 
 import (
-	"froggo/game"
 	"froggo/lib"
 	"image/color"
 
@@ -9,25 +8,27 @@ import (
 )
 
 type PlayerRectangle struct {
-	game.Entity
-
-	Position lib.Vec2
-	img      *ebiten.Image
+	Player *Player
+	img    *ebiten.Image
+	color  color.Color
 }
 
-const RectangleWidth = 256 // for now here; square cells
-const RectangleHeight = 256
+var (
+	width      = 256
+	height     = 256
+	colorGreen = color.RGBA{25, 175, 25, 255}
+)
 
-var ColorGreen = color.RGBA{25, 175, 25, 255} // TODO move to lib
+// NewPlayerRectangle constructs a new player rectangle
+func NewPlayerRectangle(p *Player) *PlayerRectangle {
 
-func NewPlayerRectangle() *PlayerRectangle {
+	r := PlayerRectangle{
+		Player: p,
+		color:  colorGreen,
+	}
 
-	r := PlayerRectangle{}
-
-	r.Position.X = 100 // FIXME: middle, bottom of the screen
-	r.Position.Y = 100
-
-	r.img = ebiten.NewImage(RectangleHeight, RectangleWidth)
+	r.img = ebiten.NewImage(height, width)
+	r.img.Fill(colorGreen)
 
 	return &r
 }
@@ -37,11 +38,18 @@ func (p *PlayerRectangle) IsActive() bool {
 }
 
 func (p *PlayerRectangle) Update() error {
-	return nil // TODO: update position if got movement component
+	return nil
 }
 
 func (p *PlayerRectangle) Draw(screen *ebiten.Image) {
-	//op := &ebiten.DrawImageOptions{}
-	p.img.Fill(ColorGreen)
-	screen.DrawImage(p.img, nil) // TODO: use proper options
+
+	x, y := derivePosition(p.Player.Position)
+
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(x, y)
+	screen.DrawImage(p.img, op)
+}
+
+func derivePosition(p lib.Vec2) (float64, float64) {
+	return p.X, p.Y
 }

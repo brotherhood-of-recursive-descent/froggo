@@ -1,25 +1,25 @@
 package player
 
 import (
-	"froggo/game"
 	"froggo/lib"
 )
 
 type Player struct {
-	game.Entity
+	lib.BaseEntity
 
 	Position lib.Vec2
 }
 
-func NewPlayer() *Player {
+func NewPlayer(inputManager lib.InputManager) *Player {
 
 	p := Player{}
 
-	movement := PlayerMovement{}
-	p.AddComponent(&movement)
+	movement := PlayerMovement{
+		Player:       &p,
+		InputManager: inputManager,
+	}
+	rectangle := NewPlayerRectangle(&p)
 
-	rectangle := PlayerRectangle{}
-	p.AddComponent(&rectangle)
-
+	p.AddComponent(&movement, rectangle)
 	return &p
 }

@@ -22,7 +22,8 @@ func TestMovement(t *testing.T) {
 
 	// setup
 	fakeInput := FakeInputManager{}
-	p := player.NewPlayer()
+	p := player.NewPlayer(&fakeInput)
+
 	movement := player.PlayerMovement{
 		Player:       p,
 		InputManager: &fakeInput,
