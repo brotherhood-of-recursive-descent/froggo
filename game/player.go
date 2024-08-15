@@ -1,4 +1,4 @@
-package player
+package game
 
 import (
 	"froggo/lib"
@@ -15,8 +15,9 @@ func NewPlayer(inputManager lib.InputManager) *Player {
 	p := Player{}
 
 	movement := PlayerMovement{
-		Player:       &p,
+		Position:     &p.Position,
 		InputManager: inputManager,
+		Active:       true,
 	}
 	rectangle := NewPlayerRectangle(&p)
 

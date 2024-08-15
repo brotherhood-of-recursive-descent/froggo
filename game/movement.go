@@ -1,4 +1,4 @@
-package player
+package game
 
 import (
 	"froggo/lib"
@@ -11,7 +11,7 @@ const MovementStep = 256
 // PlayerMovement moves the player left, right, up or down
 type PlayerMovement struct {
 	InputManager lib.InputManager
-	Player       *Player
+	Position     *lib.Vec2
 	Active       bool
 }
 
@@ -20,21 +20,20 @@ func (m *PlayerMovement) IsActive() bool {
 }
 
 func (m *PlayerMovement) Update() error {
-
 	if m.InputManager.MoveLeft() {
-		m.Player.Position.X -= MovementStep
+		m.Position.X -= MovementStep
 	}
 
 	if m.InputManager.MoveRight() {
-		m.Player.Position.X += MovementStep
+		m.Position.X += MovementStep
 	}
 
 	if m.InputManager.MoveUp() {
-		m.Player.Position.Y += MovementStep
+		m.Position.Y -= MovementStep
 	}
 
 	if m.InputManager.MoveDown() {
-		m.Player.Position.Y -= MovementStep
+		m.Position.Y += MovementStep
 	}
 
 	return nil
