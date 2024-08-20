@@ -14,8 +14,8 @@ var VERSION = "latest"
 
 // FroggoGame contains all global available objects
 type FroggoGame struct {
-	InputManager lib.InputManager
-	Entities     []lib.Entity
+	world    game.World
+	Entities []lib.Entity
 }
 
 func NewFroggoGame() *FroggoGame {
@@ -23,11 +23,13 @@ func NewFroggoGame() *FroggoGame {
 	g := &FroggoGame{}
 	g.Entities = []lib.Entity{}
 
-	// add managers
-	g.InputManager = &lib.EbitenInputManager{}
+	g.world = game.World{}
+	g.world.InputManager = &lib.EbitenInputManager{}
+	screenWidth, screenHeight := ebiten.Monitor().Size()
+	g.world.ScreenDimension.X, g.world.ScreenDimension.Y = float64(screenWidth), float64(screenHeight)
 
 	// add objects
-	player := game.NewPlayer(g.InputManager)
+	player := game.NewPlayer(g.world)
 	g.Entities = append(g.Entities, player)
 
 	return g
@@ -58,10 +60,10 @@ func (g *FroggoGame) Layout(outsideWidth, outsideHeight int) (screenWidth, scree
 
 func main() {
 
-	froggoGame := NewFroggoGame()
-
 	ebiten.SetFullscreen(true)
 	ebiten.SetWindowTitle("FROGGO - " + VERSION)
+
+	froggoGame := NewFroggoGame()
 	if err := ebiten.RunGame(froggoGame); err != nil {
 		log.Fatal(err)
 	}

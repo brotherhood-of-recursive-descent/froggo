@@ -15,6 +15,15 @@ type PlayerMovement struct {
 	Active       bool
 }
 
+func NewPlayerMovement(world World, p *Player) PlayerMovement {
+
+	return PlayerMovement{
+		Position:     &p.Position,
+		InputManager: world.InputManager,
+		Active:       true,
+	}
+}
+
 func (m *PlayerMovement) IsActive() bool {
 	return m.Active
 }

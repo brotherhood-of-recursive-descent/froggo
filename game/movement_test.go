@@ -1,7 +1,6 @@
 package game_test
 
 import (
-	"fmt"
 	"froggo/game"
 	"froggo/lib"
 	"testing"
@@ -37,8 +36,6 @@ func TestMovement(t *testing.T) {
 	fakeInput.MoveLeftActive = true
 	fakeInput.MoveRightActive = false
 	movement.Update()
-
-	fmt.Printf("%v", p)
 
 	if p.X != -256 {
 		t.Errorf("expected new position to be %v, got %v\n", -256, p.X)

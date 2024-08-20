@@ -7,17 +7,15 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
+const RectangleWidthAndHeight = 256
+
 type PlayerRectangle struct {
 	Player *Player
 	img    *ebiten.Image
 	color  color.Color
 }
 
-var (
-	width      = 256
-	height     = 256
-	colorGreen = color.RGBA{25, 175, 25, 255}
-)
+var colorGreen = color.RGBA{25, 175, 25, 255}
 
 // NewPlayerRectangle constructs a new player rectangle
 func NewPlayerRectangle(p *Player) *PlayerRectangle {
@@ -27,7 +25,7 @@ func NewPlayerRectangle(p *Player) *PlayerRectangle {
 		color:  colorGreen,
 	}
 
-	r.img = ebiten.NewImage(height, width)
+	r.img = ebiten.NewImage(RectangleWidthAndHeight, RectangleWidthAndHeight)
 	r.img.Fill(colorGreen)
 
 	return &r

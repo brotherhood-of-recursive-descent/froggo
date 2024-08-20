@@ -10,17 +10,21 @@ type Player struct {
 	Position lib.Vec2
 }
 
-func NewPlayer(inputManager lib.InputManager) *Player {
+func NewPlayer(world World) *Player {
 
 	p := Player{}
 
-	movement := PlayerMovement{
-		Position:     &p.Position,
-		InputManager: inputManager,
-		Active:       true,
-	}
+	p.Position = startPosition(world.ScreenDimension)
+	movement := NewPlayerMovement(world, &p)
 	rectangle := NewPlayerRectangle(&p)
 
 	p.AddComponent(&movement, rectangle)
 	return &p
+}
+
+func startPosition(screenDimension lib.Vec2) lib.Vec2 {
+	return lib.Vec2{
+		X: (screenDimension.X - RectangleWidthAndHeight) / 2,
+		Y: screenDimension.Y - RectangleWidthAndHeight - 10,
+	}
 }
