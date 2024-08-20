@@ -23,15 +23,15 @@ func TestMovement(t *testing.T) {
 
 	// setup
 	fakeInput := FakeInputManager{}
-	p := &lib.Vec2{}
+	p := lib.Vec2{}
 
 	movement := game.PlayerMovement{
-		Position:     p,
+		Position:     &p,
 		InputManager: &fakeInput,
 	}
 
 	// trigger move left
-	p = &lib.Vec2{} // reset
+	p = lib.Vec2{} // reset
 	fakeInput.MoveUpActive = false
 	fakeInput.MoveDownActive = false
 	fakeInput.MoveLeftActive = true
@@ -45,7 +45,7 @@ func TestMovement(t *testing.T) {
 	}
 
 	// trigger move right
-	p = &lib.Vec2{} // reset
+	p = lib.Vec2{} // reset
 	fakeInput.MoveUpActive = false
 	fakeInput.MoveDownActive = false
 	fakeInput.MoveLeftActive = false
@@ -57,7 +57,7 @@ func TestMovement(t *testing.T) {
 	}
 
 	// trigger move up
-	p = &lib.Vec2{} // reset
+	p = lib.Vec2{} // reset
 	fakeInput.MoveUpActive = true
 	fakeInput.MoveDownActive = false
 	fakeInput.MoveLeftActive = false
@@ -69,7 +69,7 @@ func TestMovement(t *testing.T) {
 	}
 
 	// trigger move down
-	p = &lib.Vec2{} // reset
+	p = lib.Vec2{} // reset
 	fakeInput.MoveUpActive = false
 	fakeInput.MoveDownActive = true
 	fakeInput.MoveLeftActive = false
