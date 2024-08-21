@@ -1,7 +1,7 @@
-package player_test
+package game_test
 
 import (
-	"froggo/game/player"
+	"froggo/game"
 	"froggo/lib"
 	"testing"
 )
@@ -22,58 +22,58 @@ func TestMovement(t *testing.T) {
 
 	// setup
 	fakeInput := FakeInputManager{}
-	p := player.NewPlayer()
-	movement := player.PlayerMovement{
-		Player:       p,
+	p := lib.Vec2{}
+
+	movement := game.PlayerMovement{
+		Position:     &p,
 		InputManager: &fakeInput,
 	}
-	p.AddComponent(&movement)
 
 	// trigger move left
-	p.Position = lib.Vec2{}
+	p = lib.Vec2{} // reset
 	fakeInput.MoveUpActive = false
 	fakeInput.MoveDownActive = false
 	fakeInput.MoveLeftActive = true
 	fakeInput.MoveRightActive = false
 	movement.Update()
 
-	if p.Position.X != -256 {
-		t.Errorf("expected new position to be %v, got %v\n", -256, p.Position.X)
+	if p.X != -256 {
+		t.Errorf("expected new position to be %v, got %v\n", -256, p.X)
 	}
 
 	// trigger move right
-	p.Position = lib.Vec2{}
+	p = lib.Vec2{} // reset
 	fakeInput.MoveUpActive = false
 	fakeInput.MoveDownActive = false
 	fakeInput.MoveLeftActive = false
 	fakeInput.MoveRightActive = true
 	movement.Update()
 
-	if p.Position.X != 256 {
-		t.Errorf("expected new position to be %v, got %v\n", 256, p.Position.X)
+	if p.X != 256 {
+		t.Errorf("expected new position to be %v, got %v\n", 256, p.X)
 	}
 
 	// trigger move up
-	p.Position = lib.Vec2{}
+	p = lib.Vec2{} // reset
 	fakeInput.MoveUpActive = true
 	fakeInput.MoveDownActive = false
 	fakeInput.MoveLeftActive = false
 	fakeInput.MoveRightActive = false
 	movement.Update()
 
-	if p.Position.Y != 256 {
-		t.Errorf("expected new position to be %v, got %v\n", 256, p.Position.Y)
+	if p.Y != -256 {
+		t.Errorf("expected new position to be %v, got %v\n", -256, p.Y)
 	}
 
 	// trigger move down
-	p.Position = lib.Vec2{}
+	p = lib.Vec2{} // reset
 	fakeInput.MoveUpActive = false
 	fakeInput.MoveDownActive = true
 	fakeInput.MoveLeftActive = false
 	fakeInput.MoveRightActive = false
 	movement.Update()
 
-	if p.Position.Y != -256 {
-		t.Errorf("expected new position to be %v, got %v\n", -256, p.Position.Y)
+	if p.Y != 256 {
+		t.Errorf("expected new position to be %v, got %v\n", 256, p.Y)
 	}
 }

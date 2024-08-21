@@ -2,6 +2,7 @@ package lib
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
 )
 
 const (
@@ -23,17 +24,17 @@ type InputManager interface {
 type EbitenInputManager struct{}
 
 func (i *EbitenInputManager) MoveLeft() bool {
-	return ebiten.IsKeyPressed(KEY_LEFT)
+	return inpututil.IsKeyJustPressed(KEY_LEFT)
 }
 
 func (i *EbitenInputManager) MoveRight() bool {
-	return ebiten.IsKeyPressed(KEY_RIGHT)
+	return inpututil.IsKeyJustPressed(KEY_RIGHT)
 }
 
 func (i *EbitenInputManager) MoveDown() bool {
-	return ebiten.IsKeyPressed(KEY_DOWN)
+	return inpututil.IsKeyJustPressed(KEY_DOWN)
 }
 
 func (i *EbitenInputManager) MoveUp() bool {
-	return ebiten.IsKeyPressed(KEY_UP)
+	return inpututil.IsKeyJustPressed(KEY_UP)
 }
