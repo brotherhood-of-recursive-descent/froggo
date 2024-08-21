@@ -2,31 +2,35 @@ package game
 
 import (
 	"froggo/lib"
-	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 const RectangleWidthAndHeight = 256
+const BorderWidth = 1
 
 type PlayerRectangle struct {
 	Player *Player
 	img    *ebiten.Image
-	color  color.Color
 }
-
-var colorGreen = color.RGBA{25, 175, 25, 255}
 
 // NewPlayerRectangle constructs a new player rectangle
 func NewPlayerRectangle(p *Player) *PlayerRectangle {
 
 	r := PlayerRectangle{
 		Player: p,
-		color:  colorGreen,
 	}
 
+	grayBox := ebiten.NewImage(RectangleWidthAndHeight, RectangleWidthAndHeight)
+	greenBox := ebiten.NewImage(RectangleWidthAndHeight-BorderWidth*2, RectangleWidthAndHeight-BorderWidth*2)
+	grayBox.Fill(lib.ColorGray)
+	greenBox.Fill(lib.ColorGreen)
+
 	r.img = ebiten.NewImage(RectangleWidthAndHeight, RectangleWidthAndHeight)
-	r.img.Fill(colorGreen)
+	r.img.DrawImage(grayBox, nil)
+	op := ebiten.DrawImageOptions{}
+	op.GeoM.Translate(BorderWidth, BorderWidth)
+	r.img.DrawImage(greenBox, &op)
 
 	return &r
 }

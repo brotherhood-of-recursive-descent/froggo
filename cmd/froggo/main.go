@@ -25,7 +25,7 @@ func NewFroggoGame() *FroggoGame {
 
 	g.world = game.World{}
 	g.world.InputManager = &lib.EbitenInputManager{}
-	screenWidth, screenHeight := ebiten.Monitor().Size()
+	screenWidth, screenHeight := ebiten.Monitor().Size() // does not work on mobiles
 	g.world.ScreenDimension.X, g.world.ScreenDimension.Y = float64(screenWidth), float64(screenHeight)
 
 	// add objects
