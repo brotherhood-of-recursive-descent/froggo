@@ -7,3 +7,6 @@ build:
 
 test:
 	go test -cover -v ./...
+
+wasm:
+	env GOOS=js GOARCH=wasm go build -o froggo.wasm cmd/froggo/main.go
