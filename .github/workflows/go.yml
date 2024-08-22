@@ -52,7 +52,7 @@ jobs:
       run: make wasm
   
     - name: Adjust permissions
-      run: chmod -R a+rX ./dist
+      run: chmod -R 0755./dist
 
     - name: upload the deployment bundle
       uses: actions/upload-artifact@v4
@@ -78,4 +78,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
+        uses: actions/deploy-pages@v3
