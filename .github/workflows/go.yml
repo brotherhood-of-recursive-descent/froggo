@@ -50,12 +50,9 @@ jobs:
 
     - name: Build Wasm
       run: make wasm
-  
-    - name: Adjust permissions
-      run: chmod -R 0755 ./dist
 
     - name: upload the deployment bundle
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
       with:
         name: github-pages 
         path: dist
