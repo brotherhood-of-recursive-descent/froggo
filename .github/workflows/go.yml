@@ -36,6 +36,7 @@ jobs:
 
     - name: Test
       run: make test
+<<<<<<< HEAD
 
     - name: Build Wasm
       run: make wasm
@@ -65,3 +66,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
+=======
+>>>>>>> main
