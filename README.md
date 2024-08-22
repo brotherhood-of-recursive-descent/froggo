@@ -1,4 +1,4 @@
-froggo
+froggo [![Go](https://github.com/brotherhood-of-recursive-descent/froggo/actions/workflows/go.yml/badge.svg)](https://github.com/brotherhood-of-recursive-descent/froggo/actions/workflows/go.yml)
 =======
 A 2d implementation of the classic frogger using ebitengine. 
 

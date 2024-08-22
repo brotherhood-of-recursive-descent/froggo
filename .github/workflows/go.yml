@@ -55,7 +55,7 @@ jobs:
       run: chmod -R 0755 ./dist
 
     - name: upload the deployment bundle
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-pages-artifact@v1
       with:
         name: github-pages 
         path: dist
