@@ -52,7 +52,7 @@ jobs:
       run: make wasm
   
     - name: Adjust permissions
-      run: chmod -R 0755./dist
+      run: chmod -R 0755 ./dist
 
     - name: upload the deployment bundle
       uses: actions/upload-artifact@v4
