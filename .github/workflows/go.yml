@@ -40,3 +40,8 @@ jobs:
     - name: Build Wasm
       run: make wasm
 
+    - name: Store wasm artefact
+      uses: actions/upload-artifact@v4
+      with:
+        name: froggo.wasm 
+        path: froggo.wasm
