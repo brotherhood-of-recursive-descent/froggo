@@ -39,7 +39,8 @@ jobs:
 
   distribution:
     needs: build
-
+    runs-on: ubuntu-latest
+    steps:
     - name: Build Wasm
       run: make wasm
   
