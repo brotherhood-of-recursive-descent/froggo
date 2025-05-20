@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"froggo/game"
 	"froggo/lib"
 	"log"
@@ -36,6 +37,10 @@ func NewFroggoGame() *FroggoGame {
 }
 
 func (g *FroggoGame) Update() error {
+
+	if ebiten.IsKeyPressed(ebiten.KeyEscape) {
+		return errors.New("game closed by user")
+	}
 
 	for _, v := range g.Entities {
 		if err := v.Update(); err != nil {
